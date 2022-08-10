@@ -1,36 +1,36 @@
-#### Provectus Internship task by Natalia Zharikova
+# Provectus Internship task by Natalia Zharikova
 
 <a name="intro"></a>
-### 1. Introduction
+## 1. Introduction
 Project made by Natalia Zharikova.
 
 Alows to upload data to Minio bucket and process it within the Flask app.
 
 <a name="prereq"></a>
-### 2. Prerequisites
+## 2. Prerequisites
 - Python 3.9.5
 - Docker 20.10.16 
 - Git  2.37.0
 - Docker-compose 1.29.2
 
 <a name="desc"></a>
-### 3. Description
+## 3. Description
 
-# Preperations (made from docker-compose.yml)
+### Preperations (made from docker-compose.yml)
 1. Creating 'src-data' and 'processed-data' buckets in Minio
 2. Upload source data to 'src-data' bucket 
 
-# Data processing 
+### Data processing 
 
 1. Reading CSV files from Minio 'src-data' bucket
 2. Match images to users 
 3. Aggregate data into a single CSV file
 4. Removing existing output.csv file and uploading a new one to 'processed-data' bucket 
 
-# Scheduling output.csv update 
+### Scheduling output.csv update 
 Creating a BackgroundScheduler to update the output.csv file every 25 minute
 
-# Serving the data
+### Serving the data
 Web server implemented with following endpoints:
 
 * `GET /data` - get all records from self.data variable in JSON format. Supports filtering by: is_image_exists = True/False, user min_age and max_age in years.
@@ -42,7 +42,7 @@ returns the records of all users that does not have images, with age is between 
 
 
 <a name="install"></a>
-### 4. Installation and Running
+## 4. Installation and Running
 Clone this repo to your local machine. Run:
 ```
 cd ProvectusInternship_NataliaZharikova-master
@@ -55,7 +55,7 @@ Now the Flask app is up and running on [http://0:0:0:0:8080/](http://localhost:8
 Minio is up and running on (http://localhost:9001/)
 
 <a name="logic"></a>
-### 5. Logic
+## 5. Logic
 
 After running `docker-compose up --build -d` command:
 
