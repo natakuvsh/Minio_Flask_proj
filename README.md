@@ -1,18 +1,15 @@
 <a name="intro"></a>
 ### 1. Introduction
 Project made by Natalia Zharikova.
+
 Alows to upload data to Minio bucket and get it within the Flask app
 
 <a name="prereq"></a>
 ### 2. Prerequisites
-- Python 3.7 or greater
-- Docker 19.03 or greater
-- Git 2.28 or greater
-- Postgres 13 or greater
-- Docker-compose 1.26 or greater
-
-To install `docker-compose` visit the following [link](https://docs.docker.com/compose/install/).
-
+- Python 3.9.5
+- Docker 20.10.16 
+- Git  2.37.0
+- Docker-compose 1.29.2
 
 <a name="desc"></a>
 ### 3. Description
