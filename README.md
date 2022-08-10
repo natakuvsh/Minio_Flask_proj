@@ -46,31 +46,24 @@ returns the records of all users that age is between 35 and 40.
 
 <a name="install"></a>
 ### 4. Installation and Running
-Clone this repo to your local machine. `cd` to the directory of the repo `provectus-internship-task` and run:
+Clone this repo to your local machine. Run:
 ```
-sudo docker-compose up --build -d
+cd ProvectusInternship_NataliaZharikova-master
 ```
-Wait until you get an error `PermissionError: [Errno 13] Permission denied` from `pg_admin`.
-The reason of the error is because you need to give access to minio and pgadmin directories. On the same terminal type `Ctrl+C` and then run:
 ```
-sudo chmod 777 minio/
-sudo chmod 777 pgadmin/
-sudo chmod 777 postgres-data/
+docker-compose up --build -d
 ```
-Now you need to restart the `docker-compose` containers you ran before. On the same terminal run:
-```
-sudo docker-compose down
-sudo docker-compose up -d
-```
-Now the service is up and running on [http://localhost:5000/](http://localhost:5000/).
 
+Now the Flask app is up and running on [http://0:0:0:0:8080/](http://localhost:8080/).
+Minio is up and running on (http://localhost:9001/)
 
 <a name="logic"></a>
 ### 5. Logic
-When you run the command `sudo docker-compose up --build -d` the script `app.py` get excuted. First, it schedules a scheduler to keep
-running the instance every 15 minutes. Then it initiates the `minioClient` and `postgres` instances and then it runs the flask app. 
-Now, for each `GET` request to the server, the `app.py` calls a function from `main.py` that retrieves the data from `postgres` DB. And 
-for each `POST` request, the `app.py` calls another function from `main.py` to manually process the data.
+After running `docker-compose up --build -d` command, MinIO Client creates 'processed-data' and 'src-data' buckets, sets their policy to public and upload initial files from '02-src-data' to 'scr-data' bucket.
+Web-service runs app.py file which initiates minio, and DataManager class, starts BackgroundScheduler(allows to update output.csv file every 25 minutes) and Flask app.
+Firstly it creates an output.csv file in 'processed-data' bucket. And stores a dict with users info in DataManager self.data variable.
+For each `GET` request to the server, the `app.py` calls a function from DataManager class that retrieves the data from self.data variable and applies filters if needed.  
+For each `POST` request, the `app.py` calls another function from DataManager to manually process the data.
 
 When `main.py` processes the data, it connects with the `minioClient` and `postgres` to read the files and then store the results in `output.csv`
 inside `minio` and also in the `postgres` database.
