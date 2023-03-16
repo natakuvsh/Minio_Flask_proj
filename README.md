@@ -1,4 +1,3 @@
-# Provectus Internship task by Natalia Zharikova
 
 <a name="intro"></a>
 ## 1. Introduction
@@ -43,10 +42,7 @@ returns the records of all users that does not have images, with age is between 
 
 <a name="install"></a>
 ## 4. Installation and Running
-Clone this repo to your local machine. Run:
-```
-cd ProvectusInternship_NataliaZharikova-master
-```
+Clone this repo to your local machine.
 ```
 docker-compose up --build -d
 ```
